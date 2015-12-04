@@ -71,15 +71,39 @@
                                         '(1))))
                   (check (eq? 'equal
                               (sub-list '(1 2)
-                                        '(1 2)))))
+                                        '(1 2))))
+                  (check (eq? 'equal
+                              (sub-list (iota 1000000 1 1)
+                                        (iota 1000000 1 1)))))
      (define-test (sublist-result)
                   "?"
                   (check (eq? 'sublist
                               (sub-list '()
                                         '(1))))
                   (check (eq? 'sublist
+                              (sub-list '()
+                                        '(1 2))))
+                  (check (eq? 'sublist
                               (sub-list '(2)
-                                        '(1 2)))))
+                                        '(1 2))))
+                  (check (eq? 'sublist
+                              (sub-list '(1 2 3)
+                                        '(1 2 3 4 5))))
+                  (check (eq? 'sublist
+                              (sub-list '(4 3 2)
+                                        '(5 4 3 2 1))))
+                  (check (eq? 'sublist
+                              (sub-list '(3 4 5)
+                                        '(1 2 3 4 5))))
+                  (check (eq? 'sublist
+                              (sub-list '(1 1 2)
+                                        '(1 1 1 2))))
+                  (check (eq? 'sublist
+                              (sub-list '(3 4 5)
+                                        (iota 1000000 1 1))))
+                  (check (eq? 'sublist
+                              (sub-list '(1 2 1 2 3)
+                                        '(1 2 3 1 2 1 2 3 2 1)))))
      (define-test (superlist-result)
                   "?"
                   (check (eq? 'superlist
@@ -87,7 +111,25 @@
                                         '())))
                   (check (eq? 'superlist
                               (sub-list '(1 2)
-                                        '(2)))))
+                                        '())))
+                  (check (eq? 'superlist
+                              (sub-list '(1 2)
+                                        '(2))))
+                  (check (eq? 'superlist
+                              (sub-list '(1 2 3 4 5)
+                                        '(1 2 3))))
+                  (check (eq? 'superlist
+                              (sub-list '(5 4 3 2 1)
+                                        '(4 3 2))))
+                  (check (eq? 'superlist
+                              (sub-list '(1 2 3 4 5)
+                                        '(3 4 5))))
+                  (check (eq? 'superlist
+                              (sub-list '(1 1 1 2)
+                                        '(1 1 2))))
+                  (check (eq? 'superlist
+                              (sub-list (iota 1000000 1 1)
+                                        '(3 4 5)))))
      (define-test (unequal-result)
                   "?"
                   (check (eq? 'unequal
@@ -95,7 +137,13 @@
                                         '(2)))))
                   (check (eq? 'unequal
                               (sub-list '(1 2)
-                                        '(1 3)))))
+                                        '(1 3))))
+                  (check (eq? 'unequal
+                              (sub-list (iota 1000001 10 1)
+                                        (iota 1000000 1 1))))
+                  (check (eq? 'unequal
+                              (sub-list '(1 2 1 2 3)
+                                        '(1 2 3 1 2 3 2 3 2 1)))))
 
 (run-registered-tests)
 
